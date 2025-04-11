@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                git branch: 'main', credentialsId: '456c88b8-2ee6-4e59-a69d-f41a035643c6', url: 'git@github.com:newjakir/ostad_m2_project_jakir007.git'
+            }
+        }
+
+        stage('Read and Print File') {
+            steps {
+                script {
+                    def fileContent = readFile('hello.txt')
+                    echo "Contents of hello.txt:\n${fileContent}"
+                }
+            }
+        }
+    }
+}
